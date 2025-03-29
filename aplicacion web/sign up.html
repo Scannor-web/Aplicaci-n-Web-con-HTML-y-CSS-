@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registro</h2>
+        <form onsubmit="return registrarUsuario(event)">
+            <input type="text" id="nombre" placeholder="Nombre Completo" minlength="10" required>
+            <input type="email" id="correo" placeholder="Correo electrónico" required>
+            <input type="password" id="contraseña" placeholder="Contraseña" minlength="12" maxlength="20" required>
+            <input type="date" id="fechaNacimiento" required>
+            <input type="text" id="direccion" placeholder="Dirección">
+            <input type="tel" id="telefono" placeholder="Teléfono" maxlength="10" required>
+            <button type="submit">Registrar</button>
+        </form>
+        <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    </div>
+    <script>
+        function registrarUsuario(event) {
+            event.preventDefault();
+            var usuario = {
+                nombre: document.getElementById("nombre").value,
+                password: document.getElementById("contraseña").value
+            };
+            var correo = document.getElementById("correo").value;
+            localStorage.setItem(correo, JSON.stringify(usuario));
+            alert("Registro exitoso. Ahora puedes iniciar sesión");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

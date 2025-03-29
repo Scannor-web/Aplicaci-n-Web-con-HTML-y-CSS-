@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Iniciar Sesión</h2>
+        <form onsubmit="return validarLogin(event)">
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+            <input type="password" id="password" placeholder="Contraseña" minlength="12" required>
+            <button type="submit">Ingresar</button>
+        </form>
+        <p>¿No tienes cuenta? <a href="sign up.html">Regístrate</a></p>
+    </div>
+    <script>
+        function validarLogin(event) {
+            event.preventDefault();
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var usuarioRegistrado = localStorage.getItem(email);
+            if (usuarioRegistrado && JSON.parse(usuarioRegistrado).password === password) {
+                window.location.href = "welcome.html";
+            } else {
+                alert("Usuario no registrado o contraseña incorrecta");
+            }
+        }
+    </script>
+</body>
+</html>
